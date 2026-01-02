@@ -238,7 +238,7 @@ class Notification(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     message = Column(String(255))
-    is_read = Column(Integer, default=0)
+    is_read = Column(Boolean, default=False)
     created_at = Column(DateTime, server_default=func.now())
 def send_push_notification(token: str, title: str, body: str, data: dict | None = None):
     payload = {
@@ -739,7 +739,7 @@ def mark_read(id: int, user=Depends(get_current_user), db=Depends(get_db)):
     n = db.query(Notification).filter_by(id=id, user_id=user.id).first()
     if not n:
         raise HTTPException(404)
-    n.is_read = 1
+    n.is_read = True
     db.commit()
     return {"msg": "Read"}
 @app.get("/me/analytics/monthly")

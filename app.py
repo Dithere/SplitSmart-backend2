@@ -97,7 +97,7 @@ class Settlement(Base):
     amount = Column(Float)
     created_at = Column(DateTime, server_default=func.now())
 
-Base.metadata.create_all(bind=engine)
+
 # --- FASTAPI SETUP ---
 app = FastAPI()
 origins = [

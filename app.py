@@ -21,11 +21,14 @@ if not DATABASE_URL:
 # --- DATABASE SETUP ---
 engine = create_engine(
     DATABASE_URL,
-    pool_size=3,              # keep small for Render free tier
+    pool_size=3,
     max_overflow=2,
     pool_pre_ping=True,
-    pool_recycle=1800,        # avoid stale connections
-    connect_args={"sslmode": "require"},
+    pool_recycle=1800,
+    connect_args={
+        "sslmode": "require",
+        "options": "-c search_path=public"
+    },
 )
 
 

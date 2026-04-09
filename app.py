@@ -109,7 +109,7 @@ app.add_middleware(
         "http://localhost:8000",
         "https://splitsmart-backend2.onrender.com",
         "http://localhost:8001",
-        "https://splitsmart-frontend.onrender.com/"
+        "https://splitsmart-frontend.onrender.com"
         ],          # allow your frontend
     allow_credentials=True,
     allow_methods=["*"],            # GET, POST, etc.
